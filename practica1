@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define ARREGLO 1000
+
+/* Generar un arreglo de números enteros aleatorios */
+void crearArreglo(int arreglo[], int tam) {
+    srand(time(NULL));
+    for (int i = 0; i < tam; i++) {
+        arreglo[i] = rand() % 1000; 
+    }
+}
+
+/* Imprimir el contenido de un arreglo */
+void imprimirArreglo(int arreglo[], int tam) {
+    for (int i = 0; i < tam; i++) {
+        printf("%d ", arreglo[i]);
+    }
+    printf("\n");
+}
+
+/* Búsqueda secuencial */
+int busquedaSecuencial(int arreglo[], int tam, int elemento) {
+    for (int i = 0; i < tam; i++) {
+        if (arreglo[i] == elemento) {
+            return i;
+        }
+    }
+    return -1; 
+}
+
+/* Ordenar el arreglo utilizando el algoritmo de selección */
+void ordenarArreglo(int arreglo[], int tam) {
+    for (int i = 0; i < tam - 1; i++) {
+        int min_idx = i;
+        for (int j = i + 1; j < tam; j++) {
+            if (arreglo[j] < arreglo[min_idx]) {
+                min_idx = j;
+            }
+        }
+        int temp = arreglo[min_idx];
+        arreglo[min_idx] = arreglo[i];
+        arreglo[i] = temp;
+    }
+}
+
+int main() {
+    int arreglo[ARREGLO];
+    clock_t inicio, fin;
+    double tiempo;
+    /*genero mi arreglo con numeros aleatorios*/
+    inicio = clock();
+    crearArreglo(arreglo, ARREGLO);
+    fin = clock();
+    tiempo = ((double)(fin - inicio)) / CLOCKS_PER_SEC;
+    printf("Tiempo en que se genero el arreglo: %f segundos\n", tiempo);
+    printf("Arreglo generado:\n");
+    imprimirArreglo(arreglo, ARREGLO);
+
+    /*Selecciona un elemento aleatorio del arreglo para realizar la busqueda*/
+    int elemento_buscar = arreglo[rand() % ARREGLO];
+    printf("numero que se esta buscando: %d\n", elemento_buscar);
+
+    /*busqueda secuencial para encoontrar el numero*/
+    inicio = clock();
+    int indice = busquedaSecuencial(arreglo, ARREGLO, elemento_buscar);
+    fin = clock();
+    tiempo = ((double)(fin - inicio)) / CLOCKS_PER_SEC;
+    printf("Tiempo de busqueda secuencial: %f segundos\n", tiempo);
+    if (indice != -1) {
+        printf("Elemento encontrado en la posicion %d\n", indice);
+    } else {
+        printf("Elemento no se encontro\n");
+    }
+
+    /*ordena mi arreglo*/
+    inicio = clock();
+    ordenarArreglo(arreglo, ARREGLO);
+    fin = clock();
+    tiempo = ((double)(fin - inicio)) / CLOCKS_PER_SEC;
+    printf("Tiempo que se tardo en ordenar el arreglo: %f segundos\n", tiempo);
+    printf("Arreglo ya ordenado:\n");
+    imprimirArreglo(arreglo, ARREGLO);
+
+    /*busca en el arreglo ya ordenado*/
+    inicio = clock();
+    indice = busquedaSecuencial(arreglo, ARREGLO, elemento_buscar);
+    fin = clock();
+    tiempo = ((double)(fin - inicio)) / CLOCKS_PER_SEC;
+    printf("Tiempo de busqueda secuencial dentro del arreglo ordenado: %f segundos\n", tiempo);
+    if (indice != -1) {
+        printf("Elemento esta en la posicion %d\n", indice);
+    } else {
+        printf("Elemento no se encontro\n");
+    }
+
+    return 0;
+}
