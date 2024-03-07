@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int* generate_array_random(int n) {
+    int* arr = (int*)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf("Error:\n");
+        return NULL;
+    }
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand() % 201 - 100;
+    }
+    return arr;
+}
+
+int find_min(int* arr, int n) {
+    int min = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+int find_max(int* arr, int n) {
+    int max = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+int* sum_arrays(int* arr1, int* arr2, int n) {
+    int* sum = (int*)malloc(n * sizeof(int));
+    if (sum == NULL) {
+        printf("Error:\n");
+        exit(EXIT_FAILURE);
+    }
+    for (int i = 0; i < n; i++) {
+        sum[i] = arr1[i] + arr2[i];
+    }
+    return sum;
+}
+
+int main() {
+    srand(time(NULL));  
+
+    int n = 10;
+    int* arr1 = generate_array_random(n);
+    int* arr2 = generate_array_random(n);
+
+    printf("Lista 1: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr1[i]);
+    }
+    printf("\n");
+
+    printf("Lista 2: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr2[i]);
+    }
+    printf("\n");
+
+    printf("El minimo de la lista 1 es %d\n", find_min(arr1, n));
+    printf("El minimo de la lista 2 es %d\n", find_min(arr2, n));
+    printf("El maximo de la lista 1 es %d\n", find_max(arr1, n));
+    printf("El maximo de la lista 2 es %d\n", find_max(arr2, n));
+
+    int* sum = sum_arrays(arr1, arr2, n);
+    printf("Listas sumadas: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", sum[i]);
+    }
+    printf("\n");
+
+    free(arr1);
+    free(arr2);
+    free(sum);
+
+    return 0;
+}
