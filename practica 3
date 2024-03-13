@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+/*operaciones*/
+typedef float (*Operacion)(float, float);
+
+
+float suma(float a, float b) { 
+    return a + b; 
+    }
+float resta(float a, float b) { 
+    return a - b; 
+    }
+float producto(float a, float b) { 
+    return a * b; 
+    }
+float division(float a, float b) {
+    return a/b;
+}
+
+/*elegir al inico del menu cual funcion se va  arealizar*/
+float hago_operacion(float a, float b, Operacion op) {
+    return op(a, b);
+}
+
+int main() {
+    float num1, num2, resultado;
+    char operador;
+    printf("elija la operacion que se quiere hacer: +, -, *, /: ");
+    scanf(" %c", &operador);
+    printf("numero 1: ");
+    scanf("%f", &num1);
+    printf("numero 2: ");
+    scanf("%f", &num2);
+
+    /*menu*/
+    switch (operador) {
+        case '+':
+            resultado = hago_operacion(num1, num2, suma);
+            break;
+        case '-':
+            resultado = hago_operacion(num1, num2, resta);
+            break;
+        case '*':
+            resultado = hago_operacion(num1, num2, producto);
+            break;
+        case '/':
+            resultado = hago_operacion(num1, num2, division);
+            break;
+        default:
+            printf("Operacion no valida\n");
+            return 1;
+    }
+    printf("El resultado es: %f\n", resultado);
+    return 0;
+}
