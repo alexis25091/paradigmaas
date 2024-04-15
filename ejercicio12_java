@@ -1,0 +1,60 @@
+public class ejercicio_12 {
+    public static void main(String[] args) {
+        Persona p1 = new Persona("Alan", 19, "Masculino", "Calle imainaria 123", "5512345678", "Alan@ejemplo.com", "Ingeniero");
+        System.out.println("Nombre: " + p1.getNombre());
+        System.out.println("Edad: " + p1.getEdad());
+        System.out.println("Género: " + p1.getGenero());
+        System.out.println("Dirección: " + p1.getDireccion());
+        System.out.println("Teléfono: " + p1.getTelefono());
+        System.out.println("Email: " + p1.getEmail());
+        System.out.println("Profesión: " + p1.getProfesion());
+    }
+}
+
+class Persona {
+    private String nombre;
+    private int edad;
+    private String genero;
+    private String direccion;
+    private String telefono;
+    private String email;
+    private String profesion;
+
+    public Persona(String nombre, int edad, String genero, String direccion, String telefono, String email, String profesion) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.genero = genero;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.profesion = profesion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getProfesion() {
+        return profesion;
+    }
+}
