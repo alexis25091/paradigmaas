@@ -1,0 +1,46 @@
+class Persona:
+    def __init__(self, nombre, edad, altura, peso, profesion):
+        self.nombre = nombre
+        self.edad = edad
+        self.altura = altura
+        self.peso = peso
+        self.profesion = profesion
+
+    # Metodos get y set para cada atributo
+    def get_nombre(self):
+        return self.nombre
+
+    def set_nombre(self, nombre):
+        self.nombre = nombre
+
+    def get_edad(self):
+        return self.edad
+
+    def set_edad(self, edad):
+        self.edad = edad
+
+    def get_altura(self):
+        return self.altura
+
+    def set_altura(self, altura):
+        self.altura = altura
+
+    def get_peso(self):
+        return self.peso
+
+    def set_peso(self, peso):
+        self.peso = peso
+
+    def get_profesion(self):
+        return self.profesion
+
+    def set_profesion(self, profesion):
+        self.profesion = profesion
+
+    # Método para imprimir información de la persona
+    def __str__(self):
+        return f'Nombre: {self.nombre}, Edad: {self.edad}, Altura: {self.altura}, Peso: {self.peso}, Profesion: {self.profesion}'
+
+# Ejemplo de uso
+persona1 = Persona('Alan', 19, 180, 60, 'Ingeniero')
+print(persona1)
