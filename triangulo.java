@@ -31,4 +31,14 @@ public class triangulo {
     private double calcularPerimetro() {
         return lado1 + lado2 + lado3;
     }
+
+    public static void main(String[] args) {
+        triangulo miTriangulo = new triangulo("amarillo", 3.0, 4.0, 5.0);
+        String colorTriangulo = miTriangulo.getColor();
+        double areaTriangulo = miTriangulo.getArea();
+        double perimetroTriangulo = miTriangulo.getPerimetro();
+        System.out.println("Color del triángulo: " + colorTriangulo);
+        System.out.println("Área del triángulo: " + areaTriangulo);
+        System.out.println("Perímetro del triángulo: " + perimetroTriangulo);
+    }
 }
