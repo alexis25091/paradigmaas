@@ -1,5 +1,5 @@
 import math
-#inicio con las del exagono
+#inicio con las del hexagono
 class Hexagono:
     def __init__(self, color, lado):
         self._color = color
