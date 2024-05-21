@@ -1,0 +1,75 @@
+public class practica_9 {
+    // Atributos
+    private int[][] rejilla;
+    private int numFilas;
+    private int numColumnas;
+
+    // Constructor
+    public practica_9(int[][] rejilla) {
+        this.rejilla = rejilla;
+        this.numFilas = rejilla.length;
+        this.numColumnas = rejilla[0].length;
+    }
+
+    // Método para encontrar la ruta desde la esquina superior izquierda a la inferior derecha
+    public void encontrarRuta() {
+        boolean[][] visitado = new boolean[numFilas][numColumnas];
+        if (encontrarRutaAux(0, 0, visitado)) {
+            System.out.println("Ruta encontrada:");
+            imprimirRuta(visitado);
+        } else {
+            System.out.println("No se encontró ninguna ruta.");
+        }
+    }
+
+    // auxiliar para encontrar la ruta recursivamente
+    private boolean encontrarRutaAux(int fila, int columna, boolean[][] visitado) {
+        // Verificar si estamos fuera de la rejilla o si la celda está bloqueada
+        if (fila < 0 || columna < 0 || fila >= numFilas || columna >= numColumnas || rejilla[fila][columna] == 1) {
+            return false;
+        }
+        // Verifica si ya hemos visitado esta celda
+        if (visitado[fila][columna]) {
+            return false;
+        }
+        // Marca la celda como visitada
+        visitado[fila][columna] = true;
+        // Verifica si hemos llegado a la esquina inferior derecha
+        if (fila == numFilas - 1 && columna == numColumnas - 1) {
+            return true;
+        }
+        // Moverse hacia abajo o hacia la derecha
+        if (encontrarRutaAux(fila + 1, columna, visitado) || encontrarRutaAux(fila, columna + 1, visitado)) {
+            return true;
+        }
+        // Si no se encontró una ruta desde esta celda, desmarcarla y retroceder
+        visitado[fila][columna] = false;
+        return false;
+    }
+
+    // Método para imprimir la ruta encontrada
+    private void imprimirRuta(boolean[][] visitado) {
+        for (int i = 0; i < numFilas; i++) {
+            for (int j = 0; j < numColumnas; j++) {
+                if (visitado[i][j]) {
+                    System.out.print("O "); // Marcar las celdas visitadas con 'O'
+                } else {
+                    System.out.print("# "); // Marcar las celdas no visitadas con '#'
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] rejilla = {
+            {0, 0, 0, 0},
+            {0, 1, 0, 1},
+            {0, 0, 0, 0},
+            {0, 0, 1, 0}
+        };
+
+        practica_9 robot = new practica_9(rejilla);
+        robot.encontrarRuta();
+    }
+}
