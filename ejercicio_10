@@ -1,0 +1,121 @@
+abstract class Figure {
+    private String color;
+
+    public Figure(String color) {
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public abstract double perimeter();
+
+    public abstract double area();
+}
+
+class Triangle extends Figure {
+    private double base;
+    private double height;
+
+    public Triangle(String color, double base, double height) {
+        super(color);
+        this.base = base;
+        this.height = height;
+    }
+
+    @Override
+    public double perimeter() {
+        // Cálculo del perímetro del triángulo
+        return 3 * (base + height);
+    }
+
+    @Override
+    public double area() {
+        // Cálculo del área del triángulo
+        return 0.5 * base * height;
+    }
+}
+
+class Circle extends Figure {
+    private double radius;
+
+    public Circle(String color, double radius) {
+        super(color);
+        this.radius = radius;
+    }
+
+    @Override
+    public double perimeter() {
+        // Cálculo del perímetro del círculo
+        return 2 * Math.PI * radius;
+    }
+
+    @Override
+    public double area() {
+        // Cálculo del área del círculo
+        return Math.PI * radius * radius;
+    }
+}
+
+class Rectangle extends Figure {
+    private double length;
+    private double width;
+
+    public Rectangle(String color, double length, double width) {
+        super(color);
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public double perimeter() {
+        // Cálculo del perímetro del rectángulo
+        return 2 * (length + width);
+    }
+
+    @Override
+    public double area() {
+        // Cálculo del área del rectángulo
+        return length * width;
+    }
+}
+
+class Hexagon extends Figure {
+    private double side;
+
+    public Hexagon(String color, double side) {
+        super(color);
+        this.side = side;
+    }
+
+    @Override
+    public double perimeter() {
+        // Cálculo del perímetro del hexágono
+        return 6 * side;
+    }
+
+    @Override
+    public double area() {
+        // Cálculo del área del hexágono
+        return (3 * Math.sqrt(3) * side * side) / 2;
+    }
+}
+
+public class ejercicio10{
+    public static void main(String[] args) {
+        Figure[] figures = {
+                new Triangle("rojo", 2, 4),
+                new Circle("azul", 7),
+                new Rectangle("verde", 4, 8),
+                new Hexagon("amarillo", 5)
+        };
+
+        for (Figure figure : figures) {
+            System.out.println("Color: " + figure.getColor());
+            System.out.println("Perímetro: " + figure.perimeter());
+            System.out.println("Área: " + figure.area());
+            System.out.println();
+        }
+    }
+}
