@@ -1,0 +1,74 @@
+import math
+
+class Figure:
+    def __init__(self, color):
+        self.color = color
+
+    def get_color(self):
+        return self.color
+
+    def perimeter(self):
+        raise NotImplementedError("Metodo perimeter() debe ser implementado en la subclase")
+
+    def area(self):
+        raise NotImplementedError("Metodo area() debe ser implementado en la subclase")
+
+class Triangle(Figure):
+    def __init__(self, color, base, height):
+        super().__init__(color)
+        self.base = base
+        self.height = height
+
+    def perimeter(self):
+        return 3 * (self.base + self.height)
+
+    def area(self):
+        return 0.5 * self.base * self.height
+
+class Circle(Figure):
+    def __init__(self, color, radius):
+        super().__init__(color)
+        self.radius = radius
+
+    def perimeter(self):
+        return 2 * math.pi * self.radius
+
+    def area(self):
+        return math.pi * self.radius ** 2
+
+class Rectangle(Figure):
+    def __init__(self, color, length, width):
+        super().__init__(color)
+        self.length = length
+        self.width = width
+
+    def perimeter(self):
+        return 2 * (self.length + self.width)
+
+    def area(self):
+        return self.length * self.width
+
+class Hexagon(Figure):
+    def __init__(self, color, side):
+        super().__init__(color)
+        self.side = side
+
+    def perimeter(self):
+        return 6 * self.side
+
+    def area(self):
+        return (3 * math.sqrt(3) * self.side ** 2) / 2
+
+if __name__ == "__main__":
+    figures = [
+        Triangle("rojo", 3, 7),
+        Circle("azul", 4),
+        Rectangle("verde", 2, 8),
+        Hexagon("amarillo", 6)
+    ]
+
+    for figure in figures:
+        print("Color:", figure.get_color())
+        print("Perimetro:", figure.perimeter())
+        print("Area:", figure.area())
+        print()
