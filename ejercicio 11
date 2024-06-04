@@ -1,0 +1,128 @@
+interface Figura {
+    String getColor();
+    double perimeter();
+    double area();
+}
+
+class trianguloA implements Figura {
+    private String color;
+    private double bas;
+    private double altura;
+
+    public trianguloA(String color, double bas, double altura) {
+        this.color = color;
+        this.bas = bas;
+        this.altura = altura;
+    }
+
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public double perimeter() {
+        return 3 * (bas + altura);
+    }
+
+    @Override
+    public double area() {
+        return 0.5 * bas * altura;
+    }
+}
+
+class CirculoA implements Figura {
+    private String color;
+    private double radius;
+
+    public CirculoA(String color, double radius) {
+        this.color = color;
+        this.radius = radius;
+    }
+
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public double perimeter() {
+        return 2 * Math.PI * radius;
+    }
+
+    @Override
+    public double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+class RectanguloA implements Figura {
+    private String color;
+    private double length;
+    private double width;
+
+    public RectanguloA(String color, double length, double width) {
+        this.color = color;
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public double perimeter() {
+        return 2 * (length + width);
+    }
+
+    @Override
+    public double area() {
+        return length * width;
+    }
+}
+
+class HexagonoA implements Figura {
+    private String color;
+    private double side;
+
+    public HexagonoA(String color, double side) {
+        this.color = color;
+        this.side = side;
+    }
+
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public double perimeter() {
+        return 6 * side;
+    }
+
+    @Override
+    public double area() {
+        return (3 * Math.sqrt(3) * side * side) / 2;
+    }
+}
+
+public class practica11 {
+    public static void main(String[] args) {
+        Figura[] figuras;
+        figuras = new Figura[]{
+                new trianguloA("rojo", 2, 4),
+                new CirculoA("azul", 7),
+                new RectanguloA("verde", 4, 8),
+                new HexagonoA("amarillo", 5)
+        };
+
+        for (Figura figura : figuras) {
+            System.out.println("Color: " + figura.getColor());
+            System.out.println("Perímetro: " + figura.perimeter());
+            System.out.println("Área: " + figura.area());
+            System.out.println();
+        }
+    }
+}
