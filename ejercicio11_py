@@ -1,0 +1,87 @@
+from abc import ABC, abstractmethod
+import math
+
+class FigureInterface(ABC):
+    @abstractmethod
+    def get_color(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+    @abstractmethod
+    def area(self):
+        pass
+
+class Triangle(FigureInterface):
+    def __init__(self, color, base, height):
+        self.color = color
+        self.base = base
+        self.height = height
+
+    def get_color(self):
+        return self.color
+
+    def perimeter(self):
+        return 3 * (self.base + self.height)
+
+    def area(self):
+        return 0.5 * self.base * self.height
+
+class Circle(FigureInterface):
+    def __init__(self, color, radius):
+        self.color = color
+        self.radius = radius
+
+    def get_color(self):
+        return self.color
+
+    def perimeter(self):
+        return 2 * math.pi * self.radius
+
+    def area(self):
+        return math.pi * self.radius ** 2
+
+class Rectangle(FigureInterface):
+    def __init__(self, color, length, width):
+        self.color = color
+        self.length = length
+        self.width = width
+
+    def get_color(self):
+        return self.color
+
+    def perimeter(self):
+        return 2 * (self.length + self.width)
+
+    def area(self):
+        return self.length * self.width
+
+class Hexagon(FigureInterface):
+    def __init__(self, color, side):
+        self.color = color
+        self.side = side
+
+    def get_color(self):
+        return self.color
+
+    def perimeter(self):
+        return 6 * self.side
+
+    def area(self):
+        return (3 * math.sqrt(3) * self.side ** 2) / 2
+
+if __name__ == "__main__":
+    figures = [
+        Triangle("rojo", 3, 7),
+        Circle("azul", 4),
+        Rectangle("verde", 2, 8),
+        Hexagon("amarillo", 6)
+    ]
+
+    for figure in figures:
+        print("Color:", figure.get_color())
+        print("Perimetro:", figure.perimeter())
+        print("Area:", figure.area())
+        print()
